@@ -8,7 +8,7 @@ signUp.get('/', (req, res) => {
 });
 
 signUp.get('/signUp', (req, res) => {
-  res.send('Hello World1!');
+  res.sendFile('views/signUp.html', { root: '.' });
 });
 
 signUp.listen(port, () => {
