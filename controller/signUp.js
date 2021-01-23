@@ -13,7 +13,7 @@ const usersController = {
   },
 
   profile(req, res) {
-    res.send('profile');
+    res.render('profile', { name: 'Rashi' });
   },
 
 };
