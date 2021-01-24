@@ -6,8 +6,10 @@ const usersController = {
   },
 
   logInUsers(req, res) {
-    userModel.getUser(req, (response) => {
-      if (response.rowCount > 0) {
+    userModel.getUser(req.body.email, req.body.password, (err, response) => {
+      if (err) {
+        res.render('logIn', { message: 'Error Occured in database' });
+      } else if (response.rowCount > 0) {
         console.log(response.rows[0]);
         res.redirect('/profile');
       } else {

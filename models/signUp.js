@@ -26,7 +26,7 @@ module.exports.createUserTable = () => {
 
 module.exports.addUser = (req, cb) => {
   const insert = `INSERT INTO users(emailid, password, name, handle, joinedon) 
-    VALUES('${req.body.email}','${req.body.password}','${req.body.uname}','${req.body.uname}','2020-06-22 19:10:25-07');`;
+    VALUES('${req.body.email}','${req.body.password}','${req.body.name}','${req.body.uname}', current_timestamp);`;
 
   client.query(insert, (err, response) => {
     console.log(err, response);
