@@ -16,6 +16,10 @@ const usersController = {
     res.render('profile', { name: 'Rashi' });
   },
 
+  sum(num1, num2) {
+    return num1 + num2;
+  },
+
 };
 
 module.exports = usersController;
