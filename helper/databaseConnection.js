@@ -8,6 +8,7 @@ const client = new Client({
   port: 5432,
 });
 
-client.connect();
-
-module.exports = client;
+exports.connect = async () => {
+  await client.connect();
+  return client;
+};

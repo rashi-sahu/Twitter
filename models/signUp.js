@@ -1,5 +1,3 @@
-const client = require('./databaseConnection.js');
-
 const createUserTableQuery = `
 CREATE TABLE IF NOT EXISTS users (
     Id serial PRIMARY KEY,
@@ -16,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 `;
 
-module.exports.createUserTable = () => {
+module.exports.createUserTable = (client) => {
   client.query(createUserTableQuery, (err) => {
     if (err) {
       console.error(err);
@@ -24,11 +22,12 @@ module.exports.createUserTable = () => {
   });
 };
 
+// why sending the wbole req body?
 module.exports.addUser = (req, cb) => {
   const insert = `INSERT INTO users(emailid, password, name, handle, joinedon) 
     VALUES('${req.body.email}','${req.body.password}','${req.body.name}','${req.body.uname}', current_timestamp);`;
 
-  client.query(insert, (err, response) => {
+  req.app.dbClient.query(insert, (err, response) => {
     console.log(err, response);
     cb();
   });

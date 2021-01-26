@@ -6,7 +6,7 @@ const usersController = {
   },
 
   logInUsers(req, res) {
-    userModel.getUser(req.body.email, req.body.password, (err, response) => {
+    userModel.getUser(req.app.dbClient, req.body.email, req.body.password, (err, response) => {
       if (err) {
         res.render('logIn', { message: 'Error Occured in database' });
       } else if (response.rowCount > 0) {
