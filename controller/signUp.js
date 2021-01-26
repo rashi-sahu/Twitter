@@ -8,12 +8,13 @@ const usersController = {
 
   addUsers(req, res) {
     userModel.addUser(req, () => {
-      res.redirect('/profile');
+      res.redirect(`/${req.body.uname}`);
     });
   },
 
   profile(req, res) {
-    res.render('profile', { name: 'Rashi' });
+    console.log(req.params);
+    res.render('profile', { name: req.params.username });
   },
 
   sum(num1, num2) {

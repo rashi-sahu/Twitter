@@ -8,10 +8,14 @@ user.get('/signUp', signUp.renderSignUpPage);
 
 user.post('/signUp', signUp.addUsers);
 
-user.get('/profile', signUp.profile);
-
 user.get('/logIn', logIn.renderLoginPage);
 
 user.post('/logIn', logIn.logInUsers);
+
+user.get('/logout', logIn.logOutUsers);
+
+user.get('/', logIn.redirect);
+
+user.get('/:username', signUp.profile);
 
 module.exports = user;
