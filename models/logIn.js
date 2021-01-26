@@ -2,7 +2,14 @@ const getSelectQueryByEmail = (email, password) => `select * from users where em
 
 module.exports.getUser = async (client, email, password, cb) => {
   const select = getSelectQueryByEmail(email, password);
-  client.query(select, (err, response) => {
-    cb(err, response);
-  });
+  let err;
+  let result;
+  try {
+    result = await client.query(select);
+    err = null;
+  } catch (e) {
+    err = e;
+    result = null;
+  }
+  cb(err, result);
 };
