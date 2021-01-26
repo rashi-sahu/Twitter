@@ -12,7 +12,6 @@ exports.addUsers = (req, res) => {
 };
 
 exports.profile = (req, res) => {
-  console.log(req.params);
   res.render('profile', { name: req.params.username });
 };
 
