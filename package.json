@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "setup": "node setup.js",
     "start": "nodemon index.js",
     "lint": "eslint controller && eslint models && eslint routes",
     "test": "jest"
