@@ -1,7 +1,6 @@
 const userModel = require('../models/signUp');
 
 exports.renderSignUpPage = (req, res) => {
-  userModel.createUserTable(req.app.dbClient);
   res.render('signUp');
 };
 
