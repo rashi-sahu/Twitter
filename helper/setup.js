@@ -1,4 +1,4 @@
-const clientConnector = require('./helper/databaseConnection');
+const clientConnector = require('./databaseConnection');
 
 const testDatabaseName = 'twitter_test';
 const devDatabaseName = 'twitter_dev';
