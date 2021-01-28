@@ -1,17 +1,19 @@
 const userModel = require('../models/signUp');
 
 exports.renderSignUpPage = (req, res) => {
-  res.render('signUp');
+  res.render('signUp', { message: '' });
 };
 
 exports.addUsers = (req, res) => {
-  userModel.addUser(req, () => {
-    res.redirect(`/${req.body.uname}`);
+  userModel.addUser(req.app.dbClient, req.body, (err) => {
+    if (!err) {
+      res.redirect(`/${req.body.uname}`);
+    } else {
+      res.render('signUp', { message: 'some error occured, try again' });
+    }
   });
 };
 
 exports.profile = (req, res) => {
   res.render('profile', { name: req.params.username });
 };
-
-exports.sum = (num1, num2) => num1 + num2;

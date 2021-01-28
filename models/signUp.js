@@ -1,10 +1,12 @@
-// why sending the wbole req body?
-module.exports.addUser = (req, cb) => {
+module.exports.addUser = (client, req, cb) => {
   const insert = `INSERT INTO users(emailid, password, name, handle, joinedon) 
-    VALUES('${req.body.email}','${req.body.password}','${req.body.name}','${req.body.uname}', current_timestamp);`;
+    VALUES('${req.email}','${req.password}','${req.name}','${req.uname}', current_timestamp);`;
 
-  req.app.dbClient.query(insert, (err, response) => {
-    console.log(err, response);
-    cb();
-  });
+  let err = null;
+  try {
+    client.query(insert);
+  } catch (e) {
+    err = e;
+  }
+  cb(err);
 };

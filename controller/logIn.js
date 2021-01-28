@@ -18,13 +18,8 @@ const usersController = {
     });
   },
 
-  logOutUsers(req, res) {
-    req.logout();
-    res.redirect('/');
-  },
-
   redirect(req, res) {
-    res.render('logIn', { message: '' });
+    res.redirect('/logIn');
   },
 
 };
