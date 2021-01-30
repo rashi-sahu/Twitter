@@ -6,15 +6,18 @@ const usersController = {
   },
 
   logInUsers(req, res) {
-    userModel.getUser(req.app.dbClient, req.body.email, req.body.password, (err, response) => {
+    const { dbClient } = req.app;
+    const { email } = req.body;
+    const { password } = req.body;
+    return userModel.getUser(dbClient, email, password, (err, response) => {
+      console.log(err, response);
       if (err) {
-        res.render('logIn', { message: 'Error Occured in database' });
-      } else if (response.rowCount > 0) {
+        return res.render('logIn', { message: 'Error Occured in database' });
+      } if (response.rowCount > 0) {
         console.log(response.rows[0]);
-        res.redirect(`/${response.rows[0].handle}`);
-      } else {
-        res.render('logIn', { message: 'Email or Password is incorrect' });
+        return res.redirect(`/${response.rows[0].handle}`);
       }
+      return res.render('logIn', { message: 'Email or Password is incorrect' });
     });
   },
 

@@ -12,7 +12,7 @@ user.get('/logIn', logIn.renderLoginPage);
 
 user.post('/logIn', logIn.logInUsers);
 
-user.get('/logout', logIn.logOutUsers);
+// user.get('/logout', logIn.logOutUsers);
 
 user.get('/', logIn.redirect);
 
