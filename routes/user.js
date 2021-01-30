@@ -1,6 +1,7 @@
 const express = require('express');
 const signUp = require('../controller/signUp.js');
 const logIn = require('../controller/logIn.js');
+const logOut = require('../controller/logOut.js');
 
 const user = express.Router();
 
@@ -12,7 +13,7 @@ user.get('/logIn', logIn.renderLoginPage);
 
 user.post('/logIn', logIn.logInUsers);
 
-// user.get('/logout', logIn.logOutUsers);
+user.get('/logout', logOut.logOutUsers);
 
 user.get('/', logIn.redirect);
 
