@@ -5,11 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Template works</title>
+    <style>
+       /* Modal Header */
+        .modal-header {
+          padding: 2px 16px;
+          background-color: #5cb85c;
+          color: white;
+        }
+
+        /* Modal Body */
+        .modal-body {padding: 16px 16px;}
+
+        /* Modal Footer */
+        .modal-footer {
+          padding: 2px 16px;
+          background-color: #5cb85c;
+          color: white;
+        }
+
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 0;
+          border: 1px solid #888;
+          width: 80%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+          animation-name: animatetop;
+          animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @keyframes animatetop {
+          from {top: -300px; opacity: 0}
+          to {top: 0; opacity: 1}
+        } 
+      </style>
   </head>
   <body>
     <div class='container' style="margin-top: 100px">
       <div class="hero-unit">
         <h1>Welcome <%= name %></h1>
+        <button id="myBtn">Post Tweet</button>
+        <form action="/post/tweet" method="post" class="needs-validation" novalidate>
+          <div id="myModal" class="modal">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close">&times;</span>
+              </div>
+              <div class="modal-body">
+                <label for="tweetDescription"></label>
+                <textarea class="form-control" id="tweetDescription" name="tweetDescription" rows="5"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-large" style= "background-color: chocolate;">Post</button>
+              </div>
+            </div>
+          
+          </div>
+        </form>
         <p>
           <a class="btn btn-primary btn-large" href="/logout">LogOut</a>
         </p>
@@ -17,5 +73,33 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks the button, open the modal 
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      </script>
   </body>
 </html>
