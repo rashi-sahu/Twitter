@@ -7,13 +7,10 @@ exports.renderSignUpPage = (req, res) => {
 exports.addUsers = (req, res) => {
   userModel.addUser(req.app.dbClient, req.body, (err) => {
     if (!err) {
+      req.session.user = req.body;
       res.redirect(`/${req.body.uname}`);
     } else {
       res.render('signUp', { message: 'some error occured, try again' });
     }
   });
-};
-
-exports.profile = (req, res) => {
-  res.render('profile', { name: req.params.username });
 };

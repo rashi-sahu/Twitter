@@ -7,16 +7,6 @@ const signUp = require('../../controller/signUp.js');
 const sinontest = sinonTest(sinon);
 
 describe('signUp controller', () => {
-  test('should render profile page', () => {
-    const req = mockRequest();
-    req.params.username = 'blah';
-    const res = mockResponse();
-    signUp.profile(req, res);
-
-    expect(res.render).toHaveBeenCalledTimes(1);
-    expect(res.render).toHaveBeenCalledWith('profile', { name: 'blah' });
-  });
-
   test('should render sign up page', () => {
     const req = mockRequest();
     const res = mockResponse();
@@ -43,6 +33,7 @@ describe('get user by signup', () => {
       app: {
         dbClient: {},
       },
+      session: {},
     };
     sinon.stub(userModel, 'addUser').yields(null);
     signUp.addUsers(req, res);

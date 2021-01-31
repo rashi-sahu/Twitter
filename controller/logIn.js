@@ -15,6 +15,7 @@ const usersController = {
         return res.render('logIn', { message: 'Error Occured in database' });
       } if (response.rowCount > 0) {
         console.log(response.rows[0]);
+        req.session.user = { email: req.body.email, password: req.body.password };
         return res.redirect(`/${response.rows[0].handle}`);
       }
       return res.render('logIn', { message: 'Email or Password is incorrect' });

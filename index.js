@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyparser = require('body-parser');
+const session = require('express-session');
 const dbConnector = require('./helper/databaseConnection');
 
 const app = express();
@@ -11,6 +12,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+app.use(session({ secret: 'Your secret key' }));
 app.use('/', signUp);
 
 dbConnector.connect().then((dbClient) => {

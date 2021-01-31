@@ -49,6 +49,7 @@ describe('get user by login', () => {
       app: {
         dbClient: {},
       },
+      session: {},
     };
     sinon.stub(userModel, 'getUser').yields(null, expectedResult);
     logIn.logInUsers(req, res);

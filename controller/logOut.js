@@ -1,3 +1,5 @@
 exports.logOutUsers = (req, res) => {
-  res.redirect('/logIn');
+  req.session.destroy(() => {
+    res.redirect('/logIn');
+  });
 };

@@ -4,6 +4,8 @@ module.exports = {
     req.body = jest.fn().mockReturnValue(req);
     req.params = jest.fn().mockReturnValue(req);
     req.app = jest.fn().mockReturnValue(req);
+    req.session = jest.fn().mockReturnValue(req);
+    req.session.destroy = jest.fn().mockReturnValue(req);
     return req;
   },
 

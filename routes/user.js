@@ -2,6 +2,7 @@ const express = require('express');
 const signUp = require('../controller/signUp.js');
 const logIn = require('../controller/logIn.js');
 const logOut = require('../controller/logOut.js');
+const profilePage = require('../controller/profile.js');
 
 const user = express.Router();
 
@@ -17,6 +18,6 @@ user.get('/logout', logOut.logOutUsers);
 
 user.get('/', logIn.redirect);
 
-user.get('/:username', signUp.profile);
+user.get('/:username', profilePage.profile);
 
 module.exports = user;
