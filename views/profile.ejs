@@ -8,7 +8,7 @@
     <META Http-Equiv="Expires" Content="0">      
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Twitter</title>
     <style>
         .modal-header {
@@ -40,7 +40,7 @@
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           max-width: 300px;
-          margin: auto;
+          margin: 0;
           text-align: center;
         }
 
@@ -66,44 +66,190 @@
           opacity: 0.7;
         }
 
-        @keyframes animatetop {
-          from {top: -300px; opacity: 0}
-          to {top: 0; opacity: 1}
-        } 
+        .tablink {
+          background-color: #555;
+          color: white;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          font-size: 17px;
+          width: 33.33%;
+        }
+
+        .tablink:hover {
+          background-color: #777;
+        }
+
+        .tabcontent {
+          color: white;
+          display: none;
+          padding: 100px 20px;
+          height: 100%;
+        }
+
+        #Tweets {background-color: rgb(217, 219, 217);}
+        #Replies {background-color: rgb(217, 219, 217);}
+        #Likes {background-color: rgb(217, 219, 217);}
+
+        .tweetcard {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 95%;
+          border-radius: 5px;
+          background-color: white;
+          margin-bottom: 30px;
+          margin-left: 30px;
+          margin-right: 100px;
+        }
+
+        .tweetcard:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .tweetcontainer {
+          padding: 2px 16px;
+          color: black;
+          font-size: 18px;
+        }
       </style>
   </head>
   <body>
-    <div class='container' style="margin-top: 100px; margin-left: -300px;">
-        <form action="/post/tweet" method="post" class="needs-validation" novalidate>
-          <div id="myModal" class="modal">
+    <div class="row">
 
-            <div class="modal-content">
-              <div class="modal-header">
-                <span class="close">&times;</span>
+      <div class="col-3">
+        <div class='container' style="margin-top: 100px; margin-left: 0;">
+            <form action="/post/tweet" method="post" class="needs-validation" novalidate>
+              <div id="myModal" class="modal">
+    
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <span class="close">&times;</span>
+                  </div>
+                  <div class="modal-body">
+                    <label for="tweetDescription"></label>
+                    <textarea class="form-control" id="tweetDescription" name="tweetDescription" rows="5"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-large" style= "background-color: chocolate;">Post</button>
+                  </div>
+                </div>
+              
               </div>
-              <div class="modal-body">
-                <label for="tweetDescription"></label>
-                <textarea class="form-control" id="tweetDescription" name="tweetDescription" rows="5"></textarea>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-large" style= "background-color: chocolate;">Post</button>
-              </div>
-            </div>
-          
+            </form>
+    
+        <div class="card">
+          <img src="https://homepages.cae.wisc.edu/~ece533/images/cat.png" alt="rashi" style="width:100%">
+          <h1><%= name %></h1>
+          <p class="title">CEO & Founder, Example</p>
+          <p>Harvard University</p>
+          <div style="margin: 24px 0;">
+            <button id="myBtn">Post Tweet</button>
           </div>
-        </form>
-
-    <div class="card">
-      <img src="https://homepages.cae.wisc.edu/~ece533/images/cat.png" alt="rashi" style="width:100%">
-      <h1><%= name %></h1>
-      <p class="title">CEO & Founder, Example</p>
-      <p>Harvard University</p>
-      <div style="margin: 24px 0;">
-        <button id="myBtn">Post Tweet</button>
-      </div>
-      <p><a class="btn btn-dark" href="/logout">LogOut</a></p>
+          <p><a class="btn btn-dark" href="/logout">LogOut</a></p>
+        </div>
+      </div> 
     </div>
+
+      <div class="col-9">
+        <button class="tablink" onclick="openPage('Tweets', this, 'GREY')" id="defaultOpen">Tweets</button>
+        <button class="tablink" onclick="openPage('Replies', this, 'GREY')">Tweets & Replies</button>
+        <button class="tablink" onclick="openPage('Likes', this, 'GREY')">Likes</button>
+
+        <div id="Tweets" class="tabcontent">
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div><div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div><div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+          <div class="tweetcard">
+            <div class="tweetcontainer">
+              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
+                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div id="Replies" class="tabcontent">
+          <h3>Tweets & Replies</h3>
+          <p>Some news this fine day!</p> 
+        </div>
+        
+        <div id="Likes" class="tabcontent">
+          <h3>Likes</h3>
+          <p>Get in touch, or swing by for a cup of coffee.</p>
+        </div>
+      </div>
+  
+  
   </div>
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
@@ -127,6 +273,32 @@
           modal.style.display = "none";
         }
       }
+
+
+
+//////////////////////////////////////////////////////////////////
+
+      function openPage(pageName,elmnt,color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+      }
+
+      document.getElementById("defaultOpen").click();
+
+      ///////////////////////////
+
+      function myFunction(x) {
+        x.classList.toggle("fa-thumbs-down");
+      } 
       </script>
   </body>
 </html>
