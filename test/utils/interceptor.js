@@ -13,6 +13,7 @@ module.exports = {
     const res = {};
     res.render = jest.fn().mockReturnValue(res);
     res.redirect = jest.fn().mockReturnValue(res);
+    res.header = jest.fn().mockReturnValue(res);
     return res;
   },
 };

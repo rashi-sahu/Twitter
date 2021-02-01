@@ -2,10 +2,15 @@ const userModel = require('../models/logIn');
 
 const usersController = {
   renderLoginPage(req, res) {
-    res.render('logIn', { message: '' });
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    if (req.session.user) {
+      return res.redirect(`/${req.session.user.uname}`);
+    }
+    return res.render('logIn', { message: '' });
   },
 
   logInUsers(req, res) {
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     const { dbClient } = req.app;
     const { email } = req.body;
     const { password } = req.body;
@@ -21,7 +26,11 @@ const usersController = {
   },
 
   redirect(req, res) {
-    res.redirect('/logIn');
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    if (req.session.user) {
+      return res.redirect(`/${req.session.user.uname}`);
+    }
+    return res.render('logIn', { message: '' });
   },
 
 };
