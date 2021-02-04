@@ -158,81 +158,14 @@
         <button class="tablink" onclick="openPage('Likes', this, 'GREY')">Likes</button>
 
         <div id="Tweets" class="tabcontent">
+          <% for(var i = 0; i < tweets.length; i++) { %>
           <div class="tweetcard">
             <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
+              <p><%= tweets[i].description %></p> 
                 <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
             </div>
           </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div><div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div><div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
-          <div class="tweetcard">
-            <div class="tweetcontainer">
-              <p>Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer 
-                Interior Designer Interior Designer Interior Designer Interior Designer Interior Designer</p> 
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size: 30px;"></i>
-            </div>
-          </div>
+          <% } %>
         </div>
         
         <div id="Replies" class="tabcontent">

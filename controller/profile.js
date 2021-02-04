@@ -14,7 +14,7 @@ exports.profile = async (req, res) => {
   const tweets = await getTweets(req.app.dbClient, req.params.username);
   console.log('tweets', tweets);
   if (req.session.user && req.session.user.uname === req.params.username) {
-    res.render('profile', { name: req.params.username });
+    res.render('profile', { name: req.params.username, tweets });
   } else {
     res.redirect('/logIn');
   }
