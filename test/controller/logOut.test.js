@@ -10,6 +10,7 @@ describe('logOut controller', () => {
     const req = mockRequest();
     const res = {
       redirect: sinon.spy(),
+      header: sinon.spy(),
     };
 
     sinon.stub(req.session, 'destroy').yields();
@@ -17,5 +18,6 @@ describe('logOut controller', () => {
 
     sinon.assert.calledWith(req.session.destroy);
     sinon.assert.calledWith(res.redirect, sinon.match('/logIn'));
+    sinon.assert.calledWith(res.header, sinon.match('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0'));
   }));
 });
