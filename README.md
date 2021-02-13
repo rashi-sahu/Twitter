@@ -1,7 +1,8 @@
 # Twitter
 
 ### Prerequisite:
-- Code editor
+- Node - 12.18.3
+- npm - 6.14.6
 
 ### Installation:
 - Run the following command in terminal to install the repo in local
