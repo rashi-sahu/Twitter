@@ -14,3 +14,8 @@ exports.profile = async (req, res) => {
     res.redirect('/logIn');
   }
 };
+
+exports.apiGetTweets = async (req, res) => {
+  const tweets = await getTweets(req.app.dbClient, req.params.username);
+  res.json(tweets);
+};
