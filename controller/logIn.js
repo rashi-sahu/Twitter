@@ -25,6 +25,22 @@ const usersController = {
     });
   },
 
+  apiLogInUsers(req, res) {
+    console.log(req.body);
+    const { dbClient } = req.app;
+    const { email } = req.body;
+    const { password } = req.body;
+    return userModel.getUser(dbClient, email, password, (err, response) => {
+      if (err) {
+        return res.json({ login: false, error: 'Error Occured in database' });
+      } if (response.rowCount > 0) {
+        req.session.user = { email, password, uname: response.rows[0].handle };
+        return res.json({ login: true, error: null });
+      }
+      return res.json({ login: false, error: 'Email or Password is incorrect' });
+    });
+  },
+
   redirect(req, res) {
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     if (req.session.user) {
