@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const userModel = require('../models/logIn');
 
 const usersController = {
@@ -26,18 +27,18 @@ const usersController = {
   },
 
   apiLogInUsers(req, res) {
-    console.log(req.body);
     const { dbClient } = req.app;
     const { email } = req.body;
     const { password } = req.body;
     return userModel.getUser(dbClient, email, password, (err, response) => {
       if (err) {
-        return res.json({ login: false, error: 'Error Occured in database' });
+        return res.json({ login: false, error: 'Error Occured in database', token: null });
       } if (response.rowCount > 0) {
         req.session.user = { email, password, uname: response.rows[0].handle };
-        return res.json({ login: true, error: null });
+        const token = jwt.sign({ email }, 'supersecret', { expiresIn: 120000 });
+        return res.json({ login: true, error: null, token });
       }
-      return res.json({ login: false, error: 'Email or Password is incorrect' });
+      return res.json({ login: false, error: 'Email or Password is incorrect', token: null });
     });
   },
 

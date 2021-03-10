@@ -1,5 +1,5 @@
 module.exports.getTweets = async (client, email) => {
-  const select = `select t.description from tweets t inner join users u on u.id = t.createdby where u.emailid = '${email}';`;
+  const select = `select t.id, t.description from tweets t inner join users u on u.id = t.createdby where u.emailid = '${email}';`;
 
   let err = null;
   let result = null;
